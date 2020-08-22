@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snippets</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</head>
+<body>
+<div class="col-md-8" style="margin: auto">
+    <h1> <%= username %>'s Snippets</h1>
+    <div class="accordion" id="fileListAccordion">
+        <% results.forEach((p, i)=>{ %>
+            <div class="card">
+                <div class="hard-header text-center file-header" onclick="$('#collapse-<%=i%>').collapse('show')">
+                    <button type="button" class="btn btn-link" onclick="location.href='<%= p.fileLink %>'">
+                        <strong><%= p.fileName %></strong>
+                    </button>
+                    <span style="flex-grow: 1"></span>
+                    <label class="center-label" style="color: #777777">Last Modified <%= p.modified %></label>
+                    <span style="width: 15px"></span>
+                </div>
+                <div id="collapse-<%=i%>" class="collapse<%=i===0?" show":""%>" data-parent="#fileListAccordion">
+                    <div class="hard-body">
+                        <%- p.content %>
+                    </div>
+                </div>
+
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+</body>
+</html>

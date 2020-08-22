@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snippet Share - Sign Up</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script>
+    function validatePassword() {
+      let pswd = document.forms["register"]["password"].value;
+      let pswd2 = document.forms["register"]["password2"].value;
+      if (pswd !== pswd2) {
+        alert("The passwords are different. Please confirm.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body class="text-center">
+<form class="col-md-4" style="margin: auto" name="register" method="POST" action="/account/register" onsubmit="return validatePassword()">
+  <svg width="8em" height="8em" viewBox="0 0 16 16" class="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+    <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
+    <path fill-rule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
+  </svg>
+  <br>
+  <h2>Snippet Share - Register</h2>
+  <br>
+  <div class="input-group-lg">
+    <label class="sr-only" for="username">Username</label>
+    <input class="form-control" type="text" placeholder="Username" name="username" value="<%= username %>" required>
+  </div>
+  <div class="input-group-lg">
+    <label class="sr-only" for="password">Password</label>
+    <input class="form-control" type="password" placeholder="Password" name="password" value="" required>
+  </div>
+  <div class="input-group-lg">
+    <label class="sr-only" for="password">Confirm Password</label>
+    <input class="form-control" type="password" placeholder="Confirm Password" name="password2" value="" required>
+  </div>
+  <% if (redirect != null) { %>
+    <input type="hidden" name="redirect" value="<%= redirect %>">
+  <% } %>
+  <br>
+  <button class="btn btn-info btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
+
+<% if (alert_message != null) {%>
+  <br>
+  <div class="alert alert-danger" role="alert">
+    <%= alert_message %>
+  </div>
+<% } %>
+
+</body>
+</html>
