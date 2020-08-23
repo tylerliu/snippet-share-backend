@@ -4,7 +4,7 @@ let {getFile, getList, insertFile, updateFile, deleteFile} = require("../mongo-m
 let {verifyToken} = require("../mongo-models/AuthModel");
 
 function base64Decode(base64_str) {
-  return Buffer.from(base64_str, 'base64').toString()
+  return Buffer.from(base64_str.replace('-','/'), 'base64').toString()
 }
 
 // authorization
@@ -47,9 +47,9 @@ router.post('/:username/:fileBase64', async function(req, res, next) {
     return;
   }
   let visible = false;
-  if (req.body.visible === "1" || req.body.visible === "true") {
+  if (req.body.visible === true || req.body.visible === "1" || req.body.visible === "true") {
     visible = true;
-  } else if (req.body.visible === "0" || req.body.visible === "false") {
+  } else if (req.body.visible === false || req.body.visible === "0" || req.body.visible === "false") {
     visible = false;
   } else {
     next({status: 400, message: "Invalid request: visibility"})
@@ -78,9 +78,9 @@ router.put('/:username/:fileBase64', async function(req, res, next) {
   }
 
   let visible = false;
-  if (req.body.visible === "1" || req.body.visible === "true") {
+  if (req.body.visible === true || req.body.visible === "1" || req.body.visible === "true") {
     visible = true;
-  } else if (req.body.visible === "0" || req.body.visible === "false") {
+  } else if (req.body.visible === false || req.body.visible === "0" || req.body.visible === "false") {
     visible = false;
   } else {
     next({status: 400, message: "Invalid request: visibility"})
@@ -101,7 +101,7 @@ router.put('/:username/:fileBase64', async function(req, res, next) {
   }
 });
 
-/* PUT update file. */
+/* DELETE file. */
 router.delete('/:username/:fileBase64', async function(req, res, next) {
 
   try {

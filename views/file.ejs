@@ -2,23 +2,33 @@
 <html>
 <head>
     <title><%= fileName.replace(/<[^>]*>/g, '') %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-<div class="col-md-8 card" style="margin: auto">
-    <div class="hard-header text-center file-header">
-        <h2><%= fileName %></h2>
-        <span style="width: 15px"></span>
-        <label class="center-label" style="color: #777777">Last Modified <%= modified %></label>
-        <span style="flex-grow: 1"></span>
-        <button type="button" class="btn btn-info" onclick="location.href='<%= rawLink %>'">
-            <strong>Raw</strong>
-        </button>
-    </div>
-    <div class="hard-body">
-        <%- content %>
+<div class="col-md-8" style="margin: auto">
+    <div class="card">
+        <div class="card-header text-center">
+            <div class="row">
+                <span style="width: 10px"></span>
+                <h2 class="no-margin"><%= fileName %></h2>
+                <span style="width: 15px"></span>
+                <p class="center-label" style="color: #777777">Last Modified <%= modified %></p>
+                <span style="flex-grow: 1"></span>
+                <button type="button" class="btn btn-info" onclick="location.href='<%= rawLink %>'">
+                    <strong>Raw</strong>
+                </button>
+                <span style="width: 10px"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <%- content %>
+        </div>
     </div>
 </div>
 </body>

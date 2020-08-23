@@ -19,20 +19,20 @@ function timeToString(time_num) {
 }
 
 function base64Encode(str) {
-    return Buffer.from(str).toString('base64')
+    return Buffer.from(str).toString('base64').replace('/','-')
 }
 
 function base64Decode(base64_str) {
-    return Buffer.from(base64_str, 'base64').toString()
+    return Buffer.from(base64_str.replace('-','/'), 'base64').toString()
 }
 
 function renderContent(fileName, content) {
     if (fileName.endsWith(".html") || fileName.endsWith(".htm")) return content;
     if (fileName.endsWith(".md")) return renderMarkdown(content);
     if (fileName.endsWith(".txt") || fileName.endsWith(".text")) {
-        return `<p>${escapeHtml(content)}</p>`
+        return `<pre><code class="plaintext">${escapeHtml(content)}</code></pre>`
     }
-    return renderMarkdown(content);
+    return `<pre><code>${escapeHtml(content)}</code></pre>`;
 }
 
 router.get('/:username', function(req, res, next) {

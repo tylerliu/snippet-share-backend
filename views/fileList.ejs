@@ -11,28 +11,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <div class="col-md-8" style="margin: auto">
     <h1> <%= username %>'s Snippets</h1>
     <div class="accordion" id="fileListAccordion">
         <% results.forEach((p, i)=>{ %>
-            <div class="card">
-                <div class="hard-header text-center file-header" onclick="$('#collapse-<%=i%>').collapse('show')">
-                    <button type="button" class="btn btn-link" onclick="location.href='<%= p.fileLink %>'">
+        <div class="card">
+            <div class="card-header text-center" onclick="$('#collapse-<%= i %>').collapse('show')">
+                <div class="row">
+                    <button type="button" class="btn btn-link no-margin" onclick="location.href='<%= p.fileLink %>'">
                         <strong><%= p.fileName %></strong>
                     </button>
                     <span style="flex-grow: 1"></span>
-                    <label class="center-label" style="color: #777777">Last Modified <%= p.modified %></label>
+                    <p class="center-label" style="color: #777777">Last Modified <%= p.modified %></p>
                     <span style="width: 15px"></span>
                 </div>
-                <div id="collapse-<%=i%>" class="collapse<%=i===0?" show":""%>" data-parent="#fileListAccordion">
-                    <div class="hard-body">
-                        <%- p.content %>
-                    </div>
-                </div>
-
             </div>
+            <div id="collapse-<%= i %>" class="collapse<%= i===0?" show":"" %>" data-parent="#fileListAccordion">
+                <div class="card-body">
+                    <%- p.content %>
+                </div>
+            </div>
+
+        </div>
         <% }) %>
     </div>
 </div>

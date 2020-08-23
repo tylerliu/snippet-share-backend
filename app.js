@@ -24,7 +24,7 @@ app.use(cookieParser());
 //authenticate editor
 app.get('/edit', (req, res, next) => {
   if (verifyToken(req.cookies.jwt) == null)
-    res.redirect('/login?redirect=/edit/');
+    res.redirect('/account/login?redirect=/edit/');
   else next();
 })
 
