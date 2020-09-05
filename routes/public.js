@@ -1,4 +1,4 @@
-let {getFileListForView, getFile} = require("../mongo-models/SnippetModel");
+let {getFileListForView, getFile} = require("../models/SnippetModel");
 const express = require('express');
 const CommonMark = require('commonmark');
 let router = express.Router();

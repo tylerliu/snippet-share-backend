@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
-let {getFile, getList, insertFile, updateFile, deleteFile} = require("../mongo-models/SnippetModel");
-let {verifyToken} = require("../mongo-models/AuthModel");
+let {getFile, getList, insertFile, updateFile, deleteFile} = require("../models/SnippetModel");
+let {verifyToken} = require("../models/AuthModel");
 
 function base64Decode(base64_str) {
   return Buffer.from(base64_str.replace('-','/'), 'base64').toString()

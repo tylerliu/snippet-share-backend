@@ -4,7 +4,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let {verifyToken} = require("./mongo-models/AuthModel");
+let {verifyToken} = require("./models/AuthModel");
 
 let publicRouter = require('./routes/public');
 let apiRouter = require('./routes/api');

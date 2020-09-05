@@ -1,4 +1,4 @@
-let {getToken, signUp} = require("../mongo-models/AuthModel");
+let {getToken, signUp} = require("../models/AuthModel");
 
 let express = require('express');
 let router = express.Router();
